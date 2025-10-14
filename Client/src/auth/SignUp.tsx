@@ -1,8 +1,10 @@
 // <== IMPORTS ==>
+import { motion } from "framer-motion";
 import useTitle from "@/hooks/useTitle";
 import LOGO from "../assets/images/LOGO.png";
-import { Button } from "@/components/ui/button";
+import ErrorModal from "@/shared/ErrorModal";
 import { useNavigate } from "react-router-dom";
+import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { userSignUpSchema, type SignUpInputState } from "@/schema/userSchema";
@@ -17,6 +19,7 @@ import {
   X,
 } from "lucide-react";
 
+// <== SIGNUP COMPONENT ==>
 const SignUp = () => {
   // USE TITLE HOOK
   useTitle("Foodies - SignUp");
@@ -28,6 +31,11 @@ const SignUp = () => {
   const [errors, setErrors] = useState<
     Partial<Record<keyof SignUpInputState, string>>
   >({});
+  // ERROR MODAL STATE
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState<boolean>(false);
+  const [modalErrors, setModalErrors] = useState<
+    { key: string; message: string }[]
+  >([]);
   // SIGN-UP INPUT STATE
   const [input, setInput] = useState<SignUpInputState>({
     fullName: "",
@@ -41,8 +49,9 @@ const SignUp = () => {
     const { name, value } = e.target;
     // SETTING INOUT VALUE FOR THE FIELDS
     setInput({ ...input, [name]: value });
-    // CLEAR FIELD-SPECIFIC ERROR ON CHANGE
+    // GETTING FIELD SPECIFIC ERROR NAME
     const fieldName = name as keyof SignUpInputState;
+    // CLEAR FIELD-SPECIFIC ERROR ON CHANGE
     if (errors[fieldName]) {
       setErrors((prev) => ({ ...prev, [fieldName]: undefined }));
     }
@@ -66,19 +75,57 @@ const SignUp = () => {
       };
       // SETTING FIELD ERRORS
       setErrors(fieldErrors);
+      // AGGREGATING ERRORS FOR MODAL DISPLAY (WITH FIELD KEYS)
+      const aggregated = Object.entries(fieldErrors)
+        .filter(([, msg]) => Boolean(msg && msg.trim()))
+        .map(([key, message]) => ({ key, message: message as string }));
+      // SENDING ERRORS TO THE MODAL
+      setModalErrors(aggregated);
+      // OPENING THE MODAL
+      setIsErrorModalOpen(true);
       return;
     }
-    console.log(input);
   };
+  // CONTAINER ANIMATION VARIANTS
+  const containerVariants = {
+    hidden: { opacity: 0, y: 24 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.5,
+        ease: "easeOut",
+        when: "beforeChildren",
+        staggerChildren: 0.08,
+      },
+    },
+  } as const;
+  // CONTAINER ITEM ANIMATION VARIANTS
+  const itemVariants = {
+    hidden: { opacity: 0, y: 12 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.4, ease: "easeOut" },
+    },
+  } as const;
   return (
-    // LOGIN MAIN WRAPPER
+    // SIGNUP MAIN WRAPPER
     <>
-      {/* LOGIN CONTENT WRAPPER */}
-      <section className="w-screen h-screen flex items-center justify-center">
+      {/* SIGNUP CONTENT WRAPPER */}
+      <section className="w-screen h-screen flex items-center justify-center overflow-hidden">
         {/* MAIN CONTENT WRAPPER */}
-        <section className="flex items-center justify-center flex-col bg-white md:max-w-[50%] lg:max-w-[40%] w-[90%] rounded-xl px-8 py-4 min-h-[80vh] shadow-2xl">
+        <motion.section
+          variants={containerVariants}
+          initial="hidden"
+          animate="visible"
+          className="flex items-center justify-center flex-col bg-white md:max-w-[50%] lg:max-w-[40%] w-[90%] rounded-xl px-8 py-4 min-h-[80vh] shadow-2xl overflow-hidden"
+        >
           {/* BRANDING SECTION */}
-          <div className="w-full flex items-center justify-center flex-col">
+          <motion.div
+            variants={itemVariants}
+            className="w-full flex items-center justify-center flex-col"
+          >
             <img
               src={LOGO}
               className="h-[80px] w-[80px]"
@@ -89,14 +136,18 @@ const SignUp = () => {
             <p className="text-gray-500 text-xs">
               Register yourself to enjoy Foodies!
             </p>
-          </div>
+          </motion.div>
           {/* FORM SECTION */}
-          <form
+          <motion.form
+            variants={itemVariants}
             onSubmit={signUpHandler}
             className="w-full pt-6 pb-0 flex items-center justify-center flex-col gap-4"
           >
             {/* FULLNAME */}
-            <div className="relative flex items-center w-full">
+            <motion.div
+              variants={itemVariants}
+              className="relative flex items-center w-full"
+            >
               <input
                 id="fullName"
                 name="fullName"
@@ -119,15 +170,12 @@ const SignUp = () => {
                   <X size={18} className="text-purple" />
                 </div>
               )}
-            </div>
-            {/* FULLNAME RELATED ERRORS */}
-            {errors.fullName && (
-              <p className="text-purple text-xs mt-1 font-semibold w-full">
-                *{errors.fullName}
-              </p>
-            )}
+            </motion.div>
             {/* EMAIL */}
-            <div className="relative flex items-center w-full">
+            <motion.div
+              variants={itemVariants}
+              className="relative flex items-center w-full"
+            >
               <input
                 id="email"
                 name="email"
@@ -150,13 +198,12 @@ const SignUp = () => {
                   <X size={18} className="text-purple" />
                 </div>
               )}
-            </div>
-            {/* EMAIL RELATED ERRORS */}
-            {errors.email && (
-              <p className="text-purple text-xs mt-1">{errors.email}</p>
-            )}
+            </motion.div>
             {/* CONTACT */}
-            <div className="relative flex items-center w-full">
+            <motion.div
+              variants={itemVariants}
+              className="relative flex items-center w-full"
+            >
               <input
                 id="contact"
                 name="contact"
@@ -178,13 +225,12 @@ const SignUp = () => {
                   <X size={18} className="text-purple" />
                 </div>
               )}
-            </div>
-            {/* CONTACT RELATED ERRORS */}
-            {errors.contact && (
-              <p className="text-purple text-xs mt-1">{errors.contact}</p>
-            )}
+            </motion.div>
             {/* PASSWORD */}
-            <div className="relative flex items-center w-full">
+            <motion.div
+              variants={itemVariants}
+              className="relative flex items-center w-full"
+            >
               <input
                 id="password"
                 name="password"
@@ -206,13 +252,9 @@ const SignUp = () => {
                   <X size={18} className="text-purple" />
                 </div>
               )}
-            </div>
-            {/* PASSWORD RELATED ERRORS */}
-            {errors.password && (
-              <p className="text-purple text-xs mt-1">{errors.password}</p>
-            )}
+            </motion.div>
             {/* SIGN-UP BUTTON */}
-            <div className="w-full">
+            <motion.div variants={itemVariants} className="w-full">
               <Button
                 disabled={loading}
                 type="submit"
@@ -221,17 +263,22 @@ const SignUp = () => {
                 {loading ? <Loader2 className="animate-spin" /> : <User2 />}
                 {loading ? "Please Wait" : "SignUp"}
               </Button>
-            </div>
+            </motion.div>
             {/* SEPARATOR */}
-            <Separator />
+            <motion.div variants={itemVariants} className="w-full">
+              <Separator />
+            </motion.div>
             {/* LOGIN OPTION */}
-            <div className="w-full flex items-center justify-center">
+            <motion.div
+              variants={itemVariants}
+              className="w-full flex items-center justify-center"
+            >
               <h5 className="w-full text-xs text-gray-500 text-center">
                 Already have an Account ?
               </h5>
-            </div>
+            </motion.div>
             {/* LOGIN BUTTON */}
-            <div className="w-full">
+            <motion.div variants={itemVariants} className="w-full">
               <Button
                 onClick={() => navigate("/login")}
                 type="button"
@@ -240,9 +287,17 @@ const SignUp = () => {
                 <LogIn />
                 Login
               </Button>
-            </div>
-          </form>
-        </section>
+            </motion.div>
+          </motion.form>
+          {/* ERROR MODAL */}
+          <ErrorModal
+            open={isErrorModalOpen}
+            onOpenChange={setIsErrorModalOpen}
+            errors={modalErrors}
+            title="SignUp Validation Failed!"
+            description="Please review your credentials carefully!"
+          />
+        </motion.section>
       </section>
     </>
   );
