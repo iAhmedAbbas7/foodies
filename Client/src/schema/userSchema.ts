@@ -3,10 +3,22 @@ import { z } from "zod";
 
 // <== USER SIGNUP VALIDATION SCHEMA ==>
 export const userSignUpSchema = z.object({
-  email: z.email("Invalid Email Address Provided!"),
-  fullName: z.string().min(3, "Invalid FullName Provided!"),
-  contact: z.string().min(10, "Invalid Contact No Provided!"),
-  password: z.string().min(8, "Password must be at least 8 Characters!"),
+  fullName: z
+    .string()
+    .min(1, { message: "FullName is required" })
+    .min(3, { message: "FullName must be at least 3 characters" }),
+  email: z
+    .string()
+    .min(1, { message: "Email is required" })
+    .email({ message: "Invalid Email Address provided" }),
+  contact: z
+    .string()
+    .min(1, { message: "Contact Number is required" })
+    .min(10, { message: "Contact Number must be at least 10 digits" }),
+  password: z
+    .string()
+    .min(1, { message: "Password is required" })
+    .min(8, { message: "Password must be at least 8 characters" }),
 });
 
 // <== SIGNUP INPUT DATA TYPE ==>
@@ -14,8 +26,14 @@ export type SignUpInputState = z.infer<typeof userSignUpSchema>;
 
 // <== USER LOGIN VALIDATION SCHEMA ==>
 export const userLoginSchema = z.object({
-  email: z.email("Invalid Email Address Provided!"),
-  password: z.string().min(8, "Password must be at least 8 Characters!"),
+  email: z
+    .string()
+    .min(1, { message: "Email is required" })
+    .email({ message: "Invalid Email Address provided" }),
+  password: z
+    .string()
+    .min(1, { message: "Password is required" })
+    .min(8, { message: "Password must be at least 8 characters" }),
 });
 
 // <== LOGIN INPUT DATA TYPE ==>
