@@ -1,14 +1,14 @@
 // <== IMPORTS ==>
 import { motion } from "framer-motion";
-import useTitle from "@/hooks/useTitle";
+import useTitle from "../hooks/useTitle";
 import LOGO from "../assets/images/LOGO.png";
-import ErrorModal from "@/shared/ErrorModal";
+import ErrorModal from "../shared/ErrorModal";
 import { useNavigate } from "react-router-dom";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
+import { Button } from "../components/ui/button";
+import { Separator } from "../components/ui/separator";
 import { useState, type ChangeEvent, type FormEvent } from "react";
 import { Loader2, Lock, LogIn, Mail, User2, X } from "lucide-react";
-import { userLoginSchema, type LoginInputState } from "@/schema/userSchema";
+import { userLoginSchema, type LoginInputState } from "../schema/userSchema";
 
 // <== LOGIN COMPONENT ==>
 const Login = () => {
