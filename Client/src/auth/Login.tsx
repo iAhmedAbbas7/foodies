@@ -7,7 +7,7 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "../components/ui/button";
 import { Separator } from "../components/ui/separator";
 import { useState, type ChangeEvent, type FormEvent } from "react";
-import { Loader2, Lock, LogIn, Mail, User2, X } from "lucide-react";
+import { Info, Loader2, Lock, LogIn, Mail, User2, X } from "lucide-react";
 import { userLoginSchema, type LoginInputState } from "../schema/userSchema";
 
 // <== LOGIN COMPONENT ==>
@@ -184,6 +184,17 @@ const Login = () => {
                   <X size={18} className="text-purple" />
                 </div>
               )}
+            </motion.div>
+            {/* FORGOT PASSWORD */}
+            <motion.div
+              variants={itemVariants}
+              className="w-full flex items-center justify-start gap-1"
+              onClick={() => navigate("/forgot-password")}
+            >
+              <Info className="text-lightPurple" size={18} />
+              <h5 className="w-full text-gray-500 text-xs hover:underline underline-offset-2 cursor-pointer">
+                Forgot Password ?
+              </h5>
             </motion.div>
             {/* LOGIN BUTTON */}
             <motion.div variants={itemVariants} className="w-full">
