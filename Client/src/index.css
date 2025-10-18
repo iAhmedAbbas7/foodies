@@ -65,6 +65,8 @@
   --color-sidebar-ring: var(--sidebar-ring);
   --color-purple: var(--purple);
   --color-lightPurple: var(--lightPurple);
+  --color-purple-100: var(--purple-100);
+  --color-blackShade: var(--blackShade);
 }
 @layer base {
   * {
@@ -111,6 +113,7 @@
   --sidebar-ring: oklch(0.708 0 0);
   --purple: #806875;
   --lightPurple: #baa1b6;
+  --purple-100: #e8dde6;
   --blackShade: #434b56;
 }
 
