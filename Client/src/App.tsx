@@ -2,6 +2,7 @@
 import Login from "./auth/Login";
 import SignUp from "./auth/SignUp";
 import MainLayout from "./layout/MainLayout";
+import VerifyEmail from "./auth/VerifyEmail";
 import ResetPassword from "./auth/ResetPassword";
 import ForgotPassword from "./auth/ForgotPassword";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -28,6 +29,10 @@ const appRouter = createBrowserRouter([
   {
     path: "/reset-password",
     element: <ResetPassword />,
+  },
+  {
+    path: "/verify-Email",
+    element: <VerifyEmail />,
   },
 ]);
 
