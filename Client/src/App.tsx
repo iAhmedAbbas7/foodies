@@ -1,8 +1,8 @@
 // <== IMPORTS ==>
 import Login from "./auth/Login";
 import SignUp from "./auth/SignUp";
-import MainLayout from "./layout/MainLayout";
 import VerifyEmail from "./auth/VerifyEmail";
+import LandingPage from "./pages/LandingPage";
 import ResetPassword from "./auth/ResetPassword";
 import ForgotPassword from "./auth/ForgotPassword";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
@@ -11,8 +11,7 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 const appRouter = createBrowserRouter([
   {
     path: "/",
-    element: <MainLayout />,
-    children: [],
+    element: <LandingPage />,
   },
   {
     path: "/login",
