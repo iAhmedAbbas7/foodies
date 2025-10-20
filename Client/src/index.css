@@ -186,3 +186,33 @@ body {
     rgba(186, 161, 182, 1) 50%
   );
 }
+.bg-purple-gradient-fun {
+  background-image: linear-gradient(
+    45deg,
+    hsl(310deg 15% 68%) 1%,
+    hsl(310deg 15% 69%) 31%,
+    hsl(310deg 15% 71%) 39%,
+    hsl(310deg 15% 72%) 44%,
+    hsl(310deg 16% 73%) 47%,
+    hsl(310deg 16% 75%) 49%,
+    hsl(310deg 16% 76%) 50%,
+    hsl(310deg 16% 77%) 51%,
+    hsl(310deg 16% 78%) 51%,
+    hsl(310deg 16% 80%) 51%,
+    hsl(310deg 16% 81%) 51%,
+    hsl(310deg 16% 82%) 50%,
+    hsl(310deg 16% 84%) 50%,
+    hsl(310deg 16% 85%) 50%,
+    hsl(311deg 16% 86%) 49%,
+    hsl(311deg 16% 88%) 49%,
+    hsl(311deg 16% 89%) 49%,
+    hsl(311deg 16% 90%) 49%,
+    hsl(311deg 16% 92%) 50%,
+    hsl(311deg 16% 93%) 51%,
+    hsl(311deg 16% 95%) 53%,
+    hsl(311deg 16% 96%) 56%,
+    hsl(311deg 16% 97%) 61%,
+    hsl(311deg 16% 99%) 69%,
+    hsl(0deg 0% 100%) 99%
+  );
+}
