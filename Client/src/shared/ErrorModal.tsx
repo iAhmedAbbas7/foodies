@@ -1,6 +1,4 @@
 // <== IMPORTS ==>
-import WARNING from "../assets/images/WARNING.png";
-import { Lock, Mail, Phone, User, X as XIcon } from "lucide-react";
 import {
   Dialog,
   DialogContent,
@@ -8,6 +6,8 @@ import {
   DialogHeader,
   DialogTitle,
 } from "@/components/ui/dialog";
+import WARNING from "../assets/images/WARNING.png";
+import { Lock, Mail, Phone, User, X as XIcon } from "lucide-react";
 
 // <== PROPS TYPE ==>
 type ErrorModalProps = {
