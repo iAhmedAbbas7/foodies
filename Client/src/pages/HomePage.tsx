@@ -1,7 +1,6 @@
 // <== IMPORTS ==>
 import { motion } from "framer-motion";
 import useTitle from "@/hooks/useTitle";
-import Navbar from "@/components/Navbar";
 
 // <== HOME PAGE COMPONENT ==>
 const HomePage = () => {
@@ -31,10 +30,8 @@ const HomePage = () => {
           variants={containerVariants}
           initial="hidden"
           animate="visible"
-        >
-          {/* NAVBAR */}
-          <Navbar />
-        </motion.section>
+          className="pt-[80px]"
+        ></motion.section>
       </section>
     </>
   );
