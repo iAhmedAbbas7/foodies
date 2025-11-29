@@ -14,11 +14,15 @@ const ResetPassword = () => {
   const loading: boolean = false;
   // MATCH PASSWORD STATE
   const [match, setMatch] = useState(false);
-  // STATE MANAGEMENT FOR INDIVIDUAL CONDITIONS
+  // HAS LOWERCASE LETTER STATE
   const [hasLower, setHasLower] = useState<boolean>(false);
+  // HAS UPPERCASE LETTER STATE
   const [hasUpper, setHasUpper] = useState<boolean>(false);
+  // HAS DIGIT STATE
   const [hasDigit, setHasDigit] = useState<boolean>(false);
+  // HAS SPECIAL CHARACTER STATE
   const [hasSpecial, setHasSpecial] = useState<boolean>(false);
+  // HAS MINIMUM LENGTH STATE
   const [hasMinLength, setHasMinLength] = useState<boolean>(false);
   // PASSWORD STATE MANAGEMENT
   const [newPassword, setNewPassword] = useState<string>("");
@@ -32,10 +36,15 @@ const ResetPassword = () => {
   }, [newPassword, confirmPassword]);
   // CHECKING FOR EACH PASSWORD CONDITION WHEN NEW PASSWORD CHANGES
   useEffect(() => {
+    // CHECKING FOR MINIMUM LENGTH
     setHasMinLength(newPassword.length >= 8);
+    // CHECKING FOR LOWERCASE LETTER
     setHasLower(/[a-z]/.test(newPassword));
+    // CHECKING FOR UPPERCASE LETTER
     setHasUpper(/[A-Z]/.test(newPassword));
+    // CHECKING FOR DIGIT
     setHasDigit(/[0-9]/.test(newPassword));
+    // CHECKING FOR SPECIAL CHARACTER
     setHasSpecial(/[^A-Za-z0-9]/.test(newPassword));
   }, [
     newPassword,
