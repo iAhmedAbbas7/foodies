@@ -1,35 +1,45 @@
-import * as React from "react"
-import * as SheetPrimitive from "@radix-ui/react-dialog"
-import { XIcon } from "lucide-react"
+// <== IMPORTS ==>
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import * as SheetPrimitive from "@radix-ui/react-dialog";
+import { XIcon } from "lucide-react";
 
-import { cn } from "@/lib/utils"
-
+// <== SHEET COMPONENT ==>
 function Sheet({ ...props }: React.ComponentProps<typeof SheetPrimitive.Root>) {
-  return <SheetPrimitive.Root data-slot="sheet" {...props} />
+  // RETURN THE SHEET COMPONENT
+  return <SheetPrimitive.Root data-slot="sheet" {...props} />;
 }
 
+// <== SHEET TRIGGER COMPONENT ==>
 function SheetTrigger({
   ...props
 }: React.ComponentProps<typeof SheetPrimitive.Trigger>) {
-  return <SheetPrimitive.Trigger data-slot="sheet-trigger" {...props} />
+  // RETURN THE SHEET TRIGGER COMPONENT
+  return <SheetPrimitive.Trigger data-slot="sheet-trigger" {...props} />;
 }
 
+// <== SHEET CLOSE COMPONENT ==>
 function SheetClose({
   ...props
 }: React.ComponentProps<typeof SheetPrimitive.Close>) {
-  return <SheetPrimitive.Close data-slot="sheet-close" {...props} />
+  // RETURN THE SHEET CLOSE COMPONENT
+  return <SheetPrimitive.Close data-slot="sheet-close" {...props} />;
 }
 
+// <== SHEET PORTAL COMPONENT ==>
 function SheetPortal({
   ...props
 }: React.ComponentProps<typeof SheetPrimitive.Portal>) {
-  return <SheetPrimitive.Portal data-slot="sheet-portal" {...props} />
+  // RETURN THE SHEET PORTAL COMPONENT
+  return <SheetPrimitive.Portal data-slot="sheet-portal" {...props} />;
 }
 
+// <== SHEET OVERLAY COMPONENT ==>
 function SheetOverlay({
   className,
   ...props
 }: React.ComponentProps<typeof SheetPrimitive.Overlay>) {
+  // RETURN THE SHEET OVERLAY COMPONENT
   return (
     <SheetPrimitive.Overlay
       data-slot="sheet-overlay"
@@ -39,17 +49,19 @@ function SheetOverlay({
       )}
       {...props}
     />
-  )
+  );
 }
 
+// <== SHEET CONTENT COMPONENT ==>
 function SheetContent({
   className,
   children,
   side = "right",
   ...props
 }: React.ComponentProps<typeof SheetPrimitive.Content> & {
-  side?: "top" | "right" | "bottom" | "left"
+  side?: "top" | "right" | "bottom" | "left";
 }) {
+  // RETURN THE SHEET CONTENT COMPONENT
   return (
     <SheetPortal>
       <SheetOverlay />
@@ -76,53 +88,61 @@ function SheetContent({
         </SheetPrimitive.Close>
       </SheetPrimitive.Content>
     </SheetPortal>
-  )
+  );
 }
 
+// <== SHEET HEADER COMPONENT ==>
 function SheetHeader({ className, ...props }: React.ComponentProps<"div">) {
+  // RETURN THE SHEET HEADER COMPONENT
   return (
     <div
       data-slot="sheet-header"
       className={cn("flex flex-col gap-1.5 p-4", className)}
       {...props}
     />
-  )
+  );
 }
 
+// <== SHEET FOOTER COMPONENT ==>
 function SheetFooter({ className, ...props }: React.ComponentProps<"div">) {
+  // RETURN THE SHEET FOOTER COMPONENT
   return (
     <div
       data-slot="sheet-footer"
       className={cn("mt-auto flex flex-col gap-2 p-4", className)}
       {...props}
     />
-  )
+  );
 }
 
+// <== SHEET TITLE COMPONENT ==>
 function SheetTitle({
   className,
   ...props
 }: React.ComponentProps<typeof SheetPrimitive.Title>) {
+  // RETURN THE SHEET TITLE COMPONENT
   return (
     <SheetPrimitive.Title
       data-slot="sheet-title"
       className={cn("text-foreground font-semibold", className)}
       {...props}
     />
-  )
+  );
 }
 
+// <== SHEET DESCRIPTION COMPONENT ==>
 function SheetDescription({
   className,
   ...props
 }: React.ComponentProps<typeof SheetPrimitive.Description>) {
+  // RETURN THE SHEET DESCRIPTION COMPONENT
   return (
     <SheetPrimitive.Description
       data-slot="sheet-description"
       className={cn("text-muted-foreground text-sm", className)}
       {...props}
     />
-  )
+  );
 }
 
 export {
@@ -134,4 +154,4 @@ export {
   SheetFooter,
   SheetTitle,
   SheetDescription,
-}
+};
