@@ -1,13 +1,17 @@
 // <== IMPORTS ==>
 import Login from "./auth/Login";
 import SignUp from "./auth/SignUp";
+import CartPage from "./pages/CartPage";
+import HomePage from "./pages/HomePage";
+import MenuPage from "./pages/MenuPage";
+import StoresPage from "./pages/StoresPage";
 import VerifyEmail from "./auth/VerifyEmail";
-import LandingPage from "./pages/LandingPage";
+import AccountPage from "./pages/AccountPage";
 import ResetPassword from "./auth/ResetPassword";
 import GlobalLayout from "./layouts/GlobalLayout";
 import ForgotPassword from "./auth/ForgotPassword";
+import TrackOrderPage from "./pages/TrackOrderPage";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import HomePage from "./pages/HomePage";
 
 // <== APP ROUTER ==>
 const appRouter = createBrowserRouter([
@@ -15,10 +19,10 @@ const appRouter = createBrowserRouter([
     path: "/",
     element: <GlobalLayout />,
     children: [
-      // LANDING PAGE ROUTE
+      // HOME PAGE ROUTE (ROOT)
       {
         index: true,
-        element: <LandingPage />,
+        element: <HomePage />,
       },
       // LOGIN PAGE ROUTE
       {
@@ -45,10 +49,30 @@ const appRouter = createBrowserRouter([
         path: "verify-Email",
         element: <VerifyEmail />,
       },
-      // HOME PAGE ROUTE
+      // ACCOUNT PAGE ROUTE
       {
-        path: "home",
-        element: <HomePage />,
+        path: "account",
+        element: <AccountPage />,
+      },
+      // STORES PAGE ROUTE
+      {
+        path: "stores",
+        element: <StoresPage />,
+      },
+      // MENU PAGE ROUTE
+      {
+        path: "menu",
+        element: <MenuPage />,
+      },
+      // TRACK ORDER PAGE ROUTE
+      {
+        path: "track-order",
+        element: <TrackOrderPage />,
+      },
+      // CART PAGE ROUTE
+      {
+        path: "cart",
+        element: <CartPage />,
       },
     ],
   },
