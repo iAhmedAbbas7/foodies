@@ -1,12 +1,14 @@
-import * as React from "react"
-import * as AvatarPrimitive from "@radix-ui/react-avatar"
+// <== IMPORTS ==>
+import * as React from "react";
+import { cn } from "@/lib/utils";
+import * as AvatarPrimitive from "@radix-ui/react-avatar";
 
-import { cn } from "@/lib/utils"
-
+// <== AVATAR COMPONENT ==>
 function Avatar({
   className,
   ...props
 }: React.ComponentProps<typeof AvatarPrimitive.Root>) {
+  // RETURN THE AVATAR COMPONENT
   return (
     <AvatarPrimitive.Root
       data-slot="avatar"
@@ -16,26 +18,30 @@ function Avatar({
       )}
       {...props}
     />
-  )
+  );
 }
 
+// <== AVATAR IMAGE COMPONENT ==>
 function AvatarImage({
   className,
   ...props
 }: React.ComponentProps<typeof AvatarPrimitive.Image>) {
+  // RETURN THE AVATAR IMAGE COMPONENT
   return (
     <AvatarPrimitive.Image
       data-slot="avatar-image"
       className={cn("aspect-square size-full", className)}
       {...props}
     />
-  )
+  );
 }
 
+// <== AVATAR FALLBACK COMPONENT ==>
 function AvatarFallback({
   className,
   ...props
 }: React.ComponentProps<typeof AvatarPrimitive.Fallback>) {
+  // RETURN THE AVATAR FALLBACK COMPONENT
   return (
     <AvatarPrimitive.Fallback
       data-slot="avatar-fallback"
@@ -45,7 +51,7 @@ function AvatarFallback({
       )}
       {...props}
     />
-  )
+  );
 }
 
-export { Avatar, AvatarImage, AvatarFallback }
+export { Avatar, AvatarImage, AvatarFallback };
