@@ -1,7 +1,9 @@
-// <= IMPORTS =>
+// <== IMPORTS ==>
 import { useEffect } from "react";
 
+// <== USE TITLE HOOK ==>
 const useTitle = (title: string) => {
+  // USE EFFECT TO SET THE TITLE OF THE DOCUMENT
   useEffect(() => {
     // GETTING THE PREVIOUS DOCUMENT TITLE
     const prevTitle = document.title;
