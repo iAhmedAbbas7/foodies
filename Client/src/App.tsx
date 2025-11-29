@@ -4,6 +4,7 @@ import SignUp from "./auth/SignUp";
 import CartPage from "./pages/CartPage";
 import HomePage from "./pages/HomePage";
 import MenuPage from "./pages/MenuPage";
+import AdminLogin from "./admin/AdminLogin";
 import StoresPage from "./pages/StoresPage";
 import VerifyEmail from "./auth/VerifyEmail";
 import AccountPage from "./pages/AccountPage";
@@ -48,6 +49,11 @@ const appRouter = createBrowserRouter([
       {
         path: "verify-Email",
         element: <VerifyEmail />,
+      },
+      // ADMIN LOGIN PAGE ROUTE
+      {
+        path: "admin-login",
+        element: <AdminLogin />,
       },
       // ACCOUNT PAGE ROUTE
       {
