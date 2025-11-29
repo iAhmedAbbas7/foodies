@@ -1,9 +1,7 @@
 /* GOOGLE FONTS IMPORT */
 @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-
 /* TAILWIND CSS CONFIGURATION */
 @import "tailwindcss";
-
 /* SHADCN-UI STYLES */
 @import "tw-animate-css";
 @custom-variant dark (&:is(.dark *));
@@ -76,7 +74,6 @@
     @apply bg-background text-foreground;
   }
 }
-
 /* ROOT VARIABLES */
 :root {
   --radius: 0.625rem;
@@ -116,7 +113,6 @@
   --purple-100: #e8dde6;
   --blackShade: #434b56;
 }
-
 /* DARK MODE VARIABLES */
 .dark {
   --background: oklch(0.145 0 0);
@@ -151,12 +147,10 @@
   --sidebar-border: oklch(1 0 0 / 10%);
   --sidebar-ring: oklch(0.556 0 0);
 }
-
 /* GLOBAL BODY STYLES */
 body {
   font-family: "Poppins", sans-serif;
 }
-
 /* GRADIENT STYLES */
 .bg-purple-gradient {
   background: linear-gradient(
